@@ -17,9 +17,14 @@ class DeviceDetail extends StatelessWidget {
     List<BluetoothService> services = await selectedDevice.discoverServices();
     services.forEach((service) {
       service.characteristics.forEach((characteristic) {
-        //do something
+        var id = characteristic.uuid;
+        print(id);
       });
     });
+  }
+
+  Future disconnectDevice() async {
+    selectedDevice.disconnect();
   }
 
   @override
@@ -27,6 +32,21 @@ class DeviceDetail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Device Info'),
+        actions: [
+          StreamBuilder<BluetoothDeviceState>(
+              stream: selectedDevice.state,
+              builder: (context, snapshot) {
+                return Visibility(
+                  visible: snapshot.data == BluetoothDeviceState.connected,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                        onPressed: () => disconnectDevice(),
+                        child: Text('Disconnect')),
+                  ),
+                );
+              })
+        ],
       ),
       body: Container(
         child: Padding(
@@ -62,9 +82,13 @@ class DeviceDetail extends StatelessWidget {
             stream: selectedDevice.state,
             builder: (context, snapshot) {
               if (snapshot.data == BluetoothDeviceState.connected) {
-                return ListTile(
-                  title: Text('Status'),
-                  subtitle: Text('Connected'),
+                return Column(
+                  children: [
+                    ListTile(
+                      title: Text('Status'),
+                      subtitle: Text('Connected'),
+                    ),
+                  ],
                 );
               } else {
                 return ElevatedButton(
