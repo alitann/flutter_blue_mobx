@@ -12,7 +12,7 @@ extension DeviceType on BluetoothDeviceType {
       case 3:
         return "Dual";
       default:
+        return "Unknown";
     }
-    return "Unknown";
   }
 }
