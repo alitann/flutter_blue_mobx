@@ -20,11 +20,14 @@ abstract class _BluetoothViewModelBase with Store {
 
   @action
   Future<void> findDevices() async {
+    flutterBlue.startScan(timeout: Duration(seconds: 10));
+
     flutterBlue.scanResults.listen((List<ScanResult> results) {
       for (ScanResult result in results) {
         _addDeviceTolist(result.device);
       }
+    }).onDone(() {
+      flutterBlue.stopScan();
     });
-    flutterBlue.startScan(timeout: Duration(seconds: 10));
   }
 }
