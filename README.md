@@ -1,16 +1,22 @@
 # blue
 
-A new Flutter project.
+Bluetooth Flutter project.
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+This project is a Flutter application that is doing below. 
 
-A few resources to get you started if this is your first Flutter project:
+- Searchs nearby bluetooth devices and adds list.  
+- Shows bluetooth device's Address, name, type
+- Detail page for bluetooth devices. 
+- Connect to or disconnect from device. 
+- Uses [flutter_blue](https://pub.dev/packages/flutter_blue) package from pub.dev 
+- Uses [mobx](https://pub.dev/packages/mobx) for state management 
+- Uses [flutter_mobx](https://pub.dev/packages/flutter_mobx) for observer widgets 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Setup 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Download code 
+- Run this code for downloading packages on pubspec.yaml 
+  * flutter pub get 
+  * flutter run 
